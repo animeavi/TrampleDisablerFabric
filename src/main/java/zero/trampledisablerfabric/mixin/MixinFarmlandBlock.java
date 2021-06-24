@@ -1,6 +1,7 @@
 package zero.trampledisablerfabric.mixin;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
@@ -17,9 +18,9 @@ public class MixinFarmlandBlock extends Block {
       super(settings);
    }
 
-   @Inject(method = {"onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"}, at = {@At("HEAD")}, cancellable = true)
-   private void onLandedUpon(World world, BlockPos pos, Entity entity, float distance, CallbackInfo info) {
-      super.onLandedUpon(world, pos, entity, distance); // Don't cancel fall damage
+   @Inject(method = {"onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"}, at = {@At("HEAD")}, cancellable = true)
+   private void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float distance, CallbackInfo info) {
+      super.onLandedUpon(world, state, pos, entity, distance); // Don't cancel fall damage
       info.cancel();
 	}
 }
