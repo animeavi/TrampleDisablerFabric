@@ -1,10 +1,14 @@
 package zero.trampledisablerfabric;
 
 import net.fabricmc.api.ModInitializer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TrampleDisabler implements ModInitializer {
-	@Override
-	public void onInitialize() {
-		System.out.println("TrampleDisabler enabled!");
-	}
+  public static final Logger LOGGER = LogManager.getLogger("trample-disabler");
+
+  @Override
+  public void onInitialize() {
+    LOGGER.info("TrampleDisabler enabled!");
+  }
 }

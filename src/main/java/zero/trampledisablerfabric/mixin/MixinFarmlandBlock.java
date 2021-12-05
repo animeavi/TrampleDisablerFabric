@@ -6,7 +6,6 @@ import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,8 +18,8 @@ public class MixinFarmlandBlock extends Block {
    }
 
    @Inject(method = {"onLandedUpon(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;F)V"}, at = {@At("HEAD")}, cancellable = true)
-   private void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float distance, CallbackInfo info) {
-      super.onLandedUpon(world, state, pos, entity, distance); // Don't cancel fall damage
+   private void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo info) {
+      super.onLandedUpon(world, state, pos, entity, fallDistance); // Don't cancel fall damage
       info.cancel();
-	}
+   }
 }
